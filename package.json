@@ -1,0 +1,20 @@
+{
+  "name": "opencode-minimax-design-auth",
+  "version": "0.1.0",
+  "description": "OpenCode and magpie provider plugin for local MiniMax Design subscriptions",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "magpie",
+    "minimax",
+    "minimax-design"
+  ],
+  "scripts": {
+    "test": "bun test"
+  },
+  "magpie": {
+    "icon": "https://design.minimax.io/favicon.ico"
+  }
+}
