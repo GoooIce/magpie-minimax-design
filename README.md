@@ -116,7 +116,7 @@ magpie provider test minimax-design MiniMax-M3.1-Flash
 通过 `GET /api/v1/credit/wallet`（随当前工作空间携带 `X-Group-Id`；失败或余额缺失时回退 `/api/v1/credit/balance`，团队空间优先展示 `team_credit`）读取：
 
 - 会员方案名（`plan_name`）与到期时间（`end_time`）
-- 顶层当前可用总积分余额（不伪造 0% 进度条）
+- 主余额窗口（数字 `balance` + `unit`，不含 `used`/`aside`，支持 magpie 0 余额停用与多账号按余额路由）
 - 分项积分明细（会员积分、充值积分、赠送积分等 `aside` 窗口）及最近到期批次（同刻到期自动汇总）
 
 ## 环境变量与安全边界
