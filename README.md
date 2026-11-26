@@ -113,11 +113,11 @@ magpie provider test minimax-design MiniMax-M3.1-Flash
 
 ## 额度查询（`magpie quota`）
 
-通过 `GET /api/v1/credit/wallet`（失败时回退 `/api/v1/credit/balance`，团队空间优先展示 `team_credit`）读取：
+通过 `GET /api/v1/credit/wallet`（随当前工作空间携带 `X-Group-Id`；失败或余额缺失时回退 `/api/v1/credit/balance`，团队空间优先展示 `team_credit`）读取：
 
 - 会员方案名（`plan_name`）与到期时间（`end_time`）
-- 当前可用总积分与下次积分刷新时间（`next_credit_refresh_time`）
-- 分项积分明细（会员积分、充值积分、赠送积分等）及最近到期批次（同刻到期自动汇总）
+- 顶层当前可用总积分余额（不伪造 0% 进度条）
+- 分项积分明细（会员积分、充值积分、赠送积分等 `aside` 窗口）及最近到期批次（同刻到期自动汇总）
 
 ## 环境变量与安全边界
 
