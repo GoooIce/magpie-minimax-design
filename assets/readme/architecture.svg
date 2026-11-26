@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="430" viewBox="0 0 1200 430"
+     role="img" aria-labelledby="arch-title arch-desc">
+  <title id="arch-title">magpie-minimax-design architecture and dual-protocol routing</title>
+  <desc id="arch-desc">Read-only decryption of local MiniMax Design desktop credentials feeding live model discovery, Anthropic and OpenAI Responses routing, and credit wallet reporting in magpie and OpenCode.</desc>
+
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1117"/>
+      <stop offset="55%" stop-color="#121621"/>
+      <stop offset="100%" stop-color="#171923"/>
+    </linearGradient>
+    <linearGradient id="coral-amber" gradientUnits="userSpaceOnUse" x1="346" y1="242" x2="416" y2="242">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="100%" stop-color="#FFB347"/>
+    </linearGradient>
+    <linearGradient id="plugin-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="100%" stop-color="#FFB347"/>
+    </linearGradient>
+    <linearGradient id="rail-anth" gradientUnits="userSpaceOnUse" x1="744" y1="202" x2="824" y2="162">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="100%" stop-color="#FFB347"/>
+    </linearGradient>
+    <linearGradient id="rail-oai" gradientUnits="userSpaceOnUse" x1="744" y1="252" x2="824" y2="256">
+      <stop offset="0%" stop-color="#FFB347"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+    <linearGradient id="rail-quota" gradientUnits="userSpaceOnUse" x1="744" y1="296" x2="824" y2="346">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="100%" stop-color="#38D39F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1200" height="430" rx="24" fill="url(#bg-grad)"/>
+  <rect x="1" y="1" width="1198" height="428" rx="23" fill="none" stroke="#252B3B" stroke-width="1.5"/>
+
+  <!-- Header bar -->
+  <g id="header" transform="translate(56 44)">
+    <text x="0" y="0" fill="#9BA4B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600" letter-spacing="1.5">HOW IT WORKS · READ-ONLY LOCAL BRIDGE</text>
+    <text x="0" y="36" fill="#F4F6FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="28" font-weight="700">本地登录态只读解密 → 多协议模型路由与实时钱包查询</text>
+  </g>
+
+  <!-- Flow connectors (userSpaceOnUse gradients so horizontal strokes render everywhere) -->
+  <g id="connectors" fill="none" stroke-width="2.5" stroke-linecap="round">
+    <!-- Left to Center -->
+    <line x1="348" y1="248" x2="408" y2="248" stroke="url(#coral-amber)"/>
+    <polygon points="408,242 420,248 408,254" fill="#FFB347"/>
+
+    <!-- Center to Right Top (Anthropic) -->
+    <path d="M 744 202 C 782 202, 782 158, 814 158" stroke="url(#rail-anth)"/>
+    <polygon points="814,152 826,158 814,164" fill="#FFB347"/>
+
+    <!-- Center to Right Middle (OpenAI Responses) -->
+    <path d="M 744 252 C 782 252, 782 254, 814 254" stroke="url(#rail-oai)"/>
+    <polygon points="814,248 826,254 814,260" fill="#7DD3FC"/>
+
+    <!-- Center to Right Bottom (Usage Wallet) -->
+    <path d="M 744 298 C 782 298, 782 346, 814 346" stroke="url(#rail-quota)"/>
+    <polygon points="814,340 826,346 814,352" fill="#38D39F"/>
+  </g>
+
+  <!-- Column 1: Local Desktop Vault -->
+  <g id="col-local" transform="translate(56 116)">
+    <rect width="292" height="266" rx="16" fill="#161B26" stroke="#283044" stroke-width="1.5"/>
+    <rect x="0" y="0" width="292" height="6" rx="3" fill="#FF5A4E"/>
+    <text x="22" y="42" fill="#FF7B72" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600">1. DESKTOP VAULT</text>
+    <text x="22" y="76" fill="#F4F6FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="24" font-weight="700">MiniMax Design</text>
+    <text x="22" y="106" fill="#9BA4B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="18">只读本机配置，零写入零弹窗</text>
+
+    <rect x="22" y="128" width="248" height="52" rx="10" fill="#10141D" stroke="#242C3F"/>
+    <text x="36" y="152" fill="#F4F6FA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600">hub-config.json</text>
+    <text x="36" y="172" fill="#9BA4B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">v2enc: token · groupId</text>
+
+    <rect x="22" y="192" width="248" height="52" rx="10" fill="#10141D" stroke="#242C3F"/>
+    <text x="36" y="216" fill="#F4F6FA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600">.token-key</text>
+    <text x="36" y="236" fill="#9BA4B8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">32-byte AES-256-GCM</text>
+  </g>
+
+  <!-- Column 2: Plugin Bridge -->
+  <g id="col-plugin" transform="translate(420 116)">
+    <rect width="324" height="266" rx="16" fill="#181D29" stroke="#36405A" stroke-width="1.5"/>
+    <rect x="0" y="0" width="324" height="6" rx="3" fill="url(#plugin-bar)"/>
+    <text x="22" y="42" fill="#FFB347" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600">2. PROVIDER PLUGIN</text>
+    <text x="22" y="76" fill="#F4F6FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" font-weight="700">minimax-design-auth</text>
+
+    <g transform="translate(22 102)">
+      <circle cx="8" cy="14" r="4.5" fill="#FF5A4E"/>
+      <text x="24" y="20" fill="#E6ECF5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19">热感知续期 · 多账号防串账</text>
+
+      <circle cx="8" cy="54" r="4.5" fill="#FFB347"/>
+      <text x="24" y="60" fill="#E6ECF5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19">实时拉取 /api/v1/config 目录</text>
+
+      <circle cx="8" cy="94" r="4.5" fill="#7DD3FC"/>
+      <text x="24" y="100" fill="#E6ECF5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19">注入 token / version / group</text>
+
+      <circle cx="8" cy="134" r="4.5" fill="#38D39F"/>
+      <text x="24" y="140" fill="#E6ECF5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19">强制 store:false · 校验 HTTPS</text>
+    </g>
+  </g>
+
+  <!-- Column 3: Verified Outputs (wider 318px cards for generous text margin) -->
+  <g id="col-outputs" transform="translate(826 116)">
+    <!-- Rail 1: Anthropic -->
+    <rect x="0" y="0" width="318" height="82" rx="14" fill="#161B26" stroke="#3B2B2C" stroke-width="1.5"/>
+    <text x="20" y="34" fill="#FF7B72" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">@ai-sdk/anthropic</text>
+    <text x="20" y="62" fill="#E6ECF5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">M3.1-Flash · M3 · alpha</text>
+
+    <!-- Rail 2: OpenAI Responses -->
+    <rect x="0" y="96" width="318" height="82" rx="14" fill="#161B26" stroke="#28394A" stroke-width="1.5"/>
+    <text x="20" y="130" fill="#7DD3FC" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">@ai-sdk/openai</text>
+    <text x="20" y="158" fill="#E6ECF5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">gamma_high · gamma-6-astra</text>
+
+    <!-- Rail 3: Wallet Quota -->
+    <rect x="0" y="192" width="318" height="74" rx="14" fill="#161B26" stroke="#223D36" stroke-width="1.5"/>
+    <text x="20" y="224" fill="#38D39F" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">auth.usage · quota</text>
+    <text x="20" y="250" fill="#E6ECF5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="18">会员方案 · 积分余额 · 到期批次</text>
+  </g>
+</svg>

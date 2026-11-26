@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="400" viewBox="0 0 1200 400"
+     role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">magpie-minimax-design — MiniMax Design subscription provider plugin for magpie and OpenCode</title>
+  <desc id="hero-desc">Read-only local bridge that turns a signed-in MiniMax Design desktop subscription into a live Anthropic and OpenAI Responses provider with real-time credit wallet reporting.</desc>
+
+  <defs>
+    <linearGradient id="hero-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1017"/>
+      <stop offset="52%" stop-color="#121723"/>
+      <stop offset="100%" stop-color="#191B26"/>
+    </linearGradient>
+    <radialGradient id="subject-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF5A4E" stop-opacity="0.22"/>
+      <stop offset="48%" stop-color="#FFB347" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#0D1017" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent-rail" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF5A4E"/>
+      <stop offset="55%" stop-color="#FFB347"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+    <clipPath id="canvas-clip">
+      <rect width="1200" height="400" rx="26"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#canvas-clip)">
+    <!-- Background -->
+    <rect width="1200" height="400" rx="26" fill="url(#hero-bg)"/>
+
+    <!-- Subtle dual-rail bridge motif framing the right subject -->
+    <g id="motif-rails" fill="none" opacity="0.55">
+      <path d="M 716 176 L 1148 176" stroke="#FFB347" stroke-width="1.3" stroke-dasharray="6 8"/>
+      <path d="M 716 226 L 1148 226" stroke="#7DD3FC" stroke-width="1.3" stroke-dasharray="6 8"/>
+      <circle cx="716" cy="176" r="4" fill="#FFB347"/>
+      <circle cx="716" cy="226" r="4" fill="#7DD3FC"/>
+    </g>
+
+    <!-- Ambient studio backlight for the composed 3D subject -->
+    <circle cx="965" cy="200" r="220" fill="url(#subject-aura)"/>
+
+    <!-- Top hairline accent bar -->
+    <rect x="56" y="0" width="220" height="5" rx="2.5" fill="url(#accent-rail)"/>
+
+    <!-- Left typography & proof block -->
+    <g id="title-block" transform="translate(56 52)">
+      <!-- Eyebrow -->
+      <rect x="0" y="0" width="356" height="34" rx="17" fill="#181E2D" stroke="#2D364D" stroke-width="1.2"/>
+      <circle cx="18" cy="17" r="4.5" fill="#FF5A4E"/>
+      <text x="34" y="23" fill="#CBD5E6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" letter-spacing="0.8">MAGPIE · OPENCODE PROVIDER</text>
+
+      <!-- Project Name -->
+      <text x="0" y="102" fill="#F6F8FC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" letter-spacing="-0.8">magpie-minimax-design</text>
+
+      <!-- Concrete plain-language value -->
+      <text x="0" y="148" fill="#D5DCE8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" font-weight="500">把本机 MiniMax Design 订阅只读接入 magpie 与 OpenCode</text>
+      <text x="0" y="180" fill="#9AA4B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19">零弹窗解密本地会话 · 动态拉取多协议模型 · 实时查看会员积分钱包</text>
+
+      <!-- Proof capability pills (generous padding, zero overflow) -->
+      <g id="proof-pills" transform="translate(0 212)">
+        <rect x="0" y="0" width="212" height="42" rx="10" fill="#171C28" stroke="#3A292C" stroke-width="1.3"/>
+        <circle cx="18" cy="21" r="4.5" fill="#FF5A4E"/>
+        <text x="32" y="27" fill="#F2F5FA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">AES-256-GCM 只读</text>
+
+        <rect x="224" y="0" width="268" height="42" rx="10" fill="#171C28" stroke="#27394A" stroke-width="1.3"/>
+        <circle cx="242" cy="21" r="4.5" fill="#7DD3FC"/>
+        <text x="256" y="27" fill="#F2F5FA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">Anthropic + Responses</text>
+
+        <rect x="504" y="0" width="160" height="42" rx="10" fill="#171C28" stroke="#213B34" stroke-width="1.3"/>
+        <circle cx="522" cy="21" r="4.5" fill="#38D39F"/>
+        <text x="536" y="27" fill="#F2F5FA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">CN · Global</text>
+      </g>
+
+      <!-- Verified model lineup metadata -->
+      <text x="0" y="296" fill="#8B96AB" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">minimax-design/* · MiniMax-M3.1-Flash · alpha · gamma_high · gamma-6-astra</text>
+    </g>
+
+    <!-- Reserved slot for transparent raster subject (composed at x=778, y=22, w=364, h=356) -->
+    <g id="subject-slot" transform="translate(778 22)">
+      <!-- Editable composition placeholder: replaced by assets/readme/source/hero-subject.png during PNG build -->
+    </g>
+  </g>
+
+  <!-- Crisp outer border -->
+  <rect x="1" y="1" width="1198" height="398" rx="25" fill="none" stroke="#262D3F" stroke-width="1.5"/>
+</svg>
