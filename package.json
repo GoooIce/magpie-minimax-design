@@ -1,7 +1,7 @@
 {
   "name": "opencode-minimax-design-auth",
-  "version": "0.1.0",
-  "description": "OpenCode and magpie provider plugin for local MiniMax Design subscriptions: desktop credential reuse, live multi-SDK model catalog, streaming chat, tool calling, and credit wallet usage",
+  "version": "0.2.0",
+  "description": "OpenCode and magpie provider plugin for local MiniMax Design subscriptions: desktop credential reuse, canonical model names, live multi-SDK chat + native image/video generation, and credit wallet usage",
   "type": "module",
   "main": "./opencode.mjs",
   "exports": {
@@ -9,6 +9,7 @@
   },
   "files": [
     "index.mjs",
+    "native.mjs",
     "opencode.mjs",
     "opencode2.mjs",
     "README.md",
