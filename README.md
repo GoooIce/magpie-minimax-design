@@ -25,14 +25,14 @@ $ magpie plugin login minimax-design "读取 MiniMax Design 桌面端登录态"
 $ magpie provider test minimax-design MiniMax-M3.1-Flash
   ✓ anthropic  682 ms · MiniMax-M3.1-Flash
 
-$ magpie provider test minimax-design claude-opus-5-5
-  ✓ anthropic  19786 ms · claude-opus-5-5
+$ magpie provider test minimax-design alpha
+  ✓ anthropic  19786 ms · alpha
 
-$ magpie provider test minimax-design gpt-5.5-high
-  ✓ responses  3519 ms · gpt-5.5-high
+$ magpie provider test minimax-design gamma_high
+  ✓ responses  3519 ms · gamma_high
 
-$ magpie provider test minimax-design gpt-6-astra
-  ✓ responses  3158 ms · gpt-6-astra
+$ magpie provider test minimax-design gamma-6-astra
+  ✓ responses  3158 ms · gamma-6-astra
 
 $ magpie quota
 minimax-design · Design Plus 年会员 · until Sep 29 · subscription
@@ -57,7 +57,7 @@ minimax-design · Design Plus 年会员 · until Sep 29 · subscription
 
 - **零弹窗只读解密**：按 MiniMax Design 的 `v2enc:` 格式使用同目录 32 字节 `.token-key`（AES-256-GCM）本地解出 `accessToken`、`selectedGroupIds[userID]` 与 `deviceId`，不弹窗索要钥匙串，也不回写任何桌面端配置。
 - **热感知续期与多账号隔离**：基于文件 `mtime` 缓存，同一 `userID` 下桌面端重新登录或切换/取消团队空间（`X-Group-Id`）时自动生效；若桌面端切到其他账号，严格校验 `userID` 不跨账号串用积分。
-- **单 Provider 多协议路由与原生媒体生成**：从 `GET /api/v1/config` 与 `GET /api/v1/models/config` 实时拉取账号下的对话模型、图像模型与视频模型（5 分钟缓存，断网时回退本地 `lkgProviderConfig` 与启动表），并将国内站合规化名映射为规范模型 ID 与显示名；同时拦截 OpenAI 兼容的 `/images/generations`、`/images/edits` 与 `/videos`（含 `/videos/{id}`、`/videos/{id}/content`）路由，直接对接 MiniMax Design 云端异步生图/生视频任务与 CDN 参考图上传。
+- **单 Provider 多协议路由与原生媒体生成**：从 `GET /api/v1/config` 与 `GET /api/v1/models/config` 实时拉取账号下的对话模型、图像模型与视频模型（5 分钟缓存，断网时回退本地 `lkgProviderConfig` 与启动表），对话模型保留上游原始 ID 避免与真实账号误并组，图像与视频模型规范化显示名与 ID 并按站点区域隔离；同时拦截 OpenAI 兼容的 `/images/generations`、`/images/edits` 与 `/videos`（含 `/videos/{id}`、`/videos/{id}/content`）路由，直接对接 MiniMax Design 云端异步生图/生视频任务与 CDN 参考图上传。
 - **安全与故障隔离**：所有鉴权请求均前置校验站点 HTTPS 白名单域名，阻断 HTTPS→HTTP 降级与跨区 307 重定向；配额不足归一为 `429` 且不误标登录态失效。
 
 ## 快速开始
@@ -84,8 +84,8 @@ run_sb plugin login minimax-design "读取 MiniMax Design 桌面端登录态"
 run_sb models
 run_sb quota
 run_sb provider test minimax-design MiniMax-M3.1-Flash
-run_sb provider test minimax-design claude-opus-5-5
-run_sb provider test minimax-design gpt-5.5-high
+run_sb provider test minimax-design alpha
+run_sb provider test minimax-design gamma_high
 ```
 
 ### 2. 日常安装到 magpie
@@ -94,7 +94,7 @@ run_sb provider test minimax-design gpt-5.5-high
 magpie plugin add github:GoooIce/magpie-minimax-design
 magpie plugin login minimax-design           # 中国区；国际版用 minimax-design-global
 magpie provider test minimax-design MiniMax-M3.1-Flash
-magpie provider test minimax-design gpt-6-astra
+magpie provider test minimax-design gamma-6-astra
 ```
 
 ### 支持的登录方式
@@ -106,19 +106,18 @@ magpie provider test minimax-design gpt-6-astra
 
 ## 模型目录与协议
 
-登录后由 `GET /api/v1/config`（对话模型）与 `GET /api/v1/models/config`（图像与视频模型）按账号实时刷新，并自动把国内站合规化名（如 `alpha` / `Gamma-Op 5.5`、`gamma-6-astra`、`g-image-*`、`banana-*`、`悠船 8.2`、`SD 2.5`）映射为正常模型名与 ID，底层请求仍保留上游实际模型标识。
+登录后由 `GET /api/v1/config`（对话模型）与 `GET /api/v1/models/config`（图像与视频模型）按账号实时刷新。对话模型保留上游原始 ID 与显示名（不与真实 Claude / Codex 账号混入同一自动分组）；图像与视频模型将国内站合规化名（如 `g-image-*`、`banana-*`、`悠船 8.2`、`SD 2.5`）映射为规范模型 ID 与显示名，底层请求仍保留上游实际 `model_name`。
 
 ### 对话模型（Anthropic Messages & OpenAI Responses）
 
-| 模型 ID | 显示名 | 上游 ID | 协议（SDK） | 特性 |
-| --- | --- | --- | --- | --- |
-| `MiniMax-M3.1-Flash` | MiniMax M3.1 Flash | `MiniMax-M3.1-Flash` | `@ai-sdk/anthropic` (`/messages`) | 1M 上下文，工具调用，自适应思考 |
-| `MiniMax-M3` | MiniMax M3 | `MiniMax-M3` | `@ai-sdk/anthropic` (`/messages`) | 工具调用，思考 |
-| `MiniMax-M2.7` | MiniMax M2.7 | `MiniMax-M2.7` | `@ai-sdk/anthropic` (`/messages`) | 工具调用，思考 |
-| `claude-opus-5-5` | Claude Opus 5.5 | `alpha` | `@ai-sdk/anthropic` (`/messages`) | `low` / `medium` / `high` 思考档位（会员） |
-| `claude-opus-4-6` | Claude Opus 4.6 | `alpha_high` | `@ai-sdk/anthropic` (`/messages`) | 1M 上下文，思考 |
-| `gpt-5.5` / `gpt-5.5-high` / `gpt-5.5-mid` | GPT-5.5 / High / Mid | `gamma` / `gamma_high` / `gamma_mid` | `@ai-sdk/openai` (`/responses`) | 自动强制 `store: false`，`low` / `medium` / `high` |
-| `gpt-6-astra` | GPT-6 Astra | `gamma-6-astra` | `@ai-sdk/openai` (`/responses`) | 自动强制 `store: false`，`low` / `medium` / `high`（会员） |
+| 模型 ID | 显示名 | 协议（SDK） | 特性 |
+| --- | --- | --- | --- |
+| `MiniMax-M3.1-Flash` | MiniMax-M3.1-Flash | `@ai-sdk/anthropic` (`/messages`) | 1M 上下文，工具调用，自适应思考 |
+| `MiniMax-M3` | MiniMax-M3 | `@ai-sdk/anthropic` (`/messages`) | 工具调用，思考 |
+| `MiniMax-M2.7` | MiniMax-M2.7 | `@ai-sdk/anthropic` (`/messages`) | 工具调用，思考 |
+| `alpha` | Gamma-Op 5.5 | `@ai-sdk/anthropic` (`/messages`) | `low` / `medium` / `high` 思考档位（会员） |
+| `gamma_high` | Gamma | `@ai-sdk/openai` (`/responses`) | 自动强制 `store: false`，`low` / `medium` / `high` |
+| `gamma-6-astra` | Gamma-Astra | `@ai-sdk/openai` (`/responses`) | 自动强制 `store: false`，`low` / `medium` / `high`（会员） |
 
 > 注：`/api/v1/config` 中的 `@ai-sdk/google`（`omega-3.1-pro`）直连 `/api/v1/models/*` 返回 404，本插件已主动过滤，避免目录出现不可用模型。
 
