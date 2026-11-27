@@ -142,6 +142,16 @@ magpie provider test minimax-design gamma-6-astra
 | `kling-v3-omni-video` / `kling-avatar` | Kling 3.0 Omni / Avatar | `kling` / `kling_avatar` | 中国区 / 国际版 |
 | `veo-3.1` / `veo-3.1-fast` | Veo 3.1 / Fast | `veo3` | 国际版 |
 
+### 原生语音模型（`/v1/audio/speech` & `/v1/audio/transcriptions`）
+
+| 端点 | 模型 ID | 后端 | 说明 |
+| --- | --- | --- | --- |
+| `POST /v1/audio/speech` | `speech-2.8-hd` | `minimax_tts` | OpenAI TTS 协议（`input`、`voice`、`speed`，支持 `emotion`/`vol`/`pitch`/`pronunciation_dict`/`voice_modify`） |
+| `POST /v1/audio/speech` | `seed-audio-1.0` | `seedaudio` | 支持 `instructions`、`speed`、`response_format`（`mp3`/`wav`/`pcm`/`opus`）、`sample_rate` 与参考音频/图像 |
+| `POST /v1/audio/transcriptions` | `minimax-asr` | `minimax_asr` | 支持 `multipart/form-data` 上传 `file`（最大 64 MB，超限返回 413）或 HTTPS `audio_url`，输出 `json`/`text`/`verbose_json`/`srt`/`vtt` |
+
+> 注：由于现版 magpie 会将纯 `output: ["audio"]` 模型和无文本输出模型从对话模型选择器中过滤（避免污染聊天列表），调用 `/v1/audio/speech` 与 `/v1/audio/transcriptions` 时请显式传入带前缀的模型 ID（如 `minimax-design/speech-2.8-hd`、`minimax-design/minimax-asr`）。
+
 ## 额度查询（`magpie quota`）
 
 通过 `GET /api/v1/credit/wallet`（随当前工作空间携带 `X-Group-Id`；失败或余额缺失时回退 `/api/v1/credit/balance`，团队空间优先展示 `team_credit`）读取：
